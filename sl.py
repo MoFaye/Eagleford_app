@@ -2,9 +2,6 @@ import streamlit as st
 import altair as alt
 import pandas as pd
 from vega_datasets import data
-from datetime import date
-import json
-import io
 import requests
 from streamlit_lottie import st_lottie
 
