@@ -4,12 +4,15 @@ import pandas as pd
 from vega_datasets import data
 from datetime import date
 import json
+import io
+import requests
 from streamlit_lottie import st_lottie
 
 st.set_page_config(page_title="Eagle Ford Play Analysis App", layout='wide')
 
-animation = json.load(
-    open('https://github.com/MoFaye/Eagleford_app/blob/48b870dd40ce1e7b2b0885229b1cea4b92709324/animation_lk9g19p3.json'))
+animation_url ='https://raw.githubusercontent.com/MoFaye/Eagleford_app/main/animation_lk9g19p3.json'
+read_animation = requests.get(animation_url)
+animation = read_animation.json()
 st_lottie(animation, speed=1,
           height=250,
           key="initial")
@@ -35,8 +38,8 @@ with row1_1:
         "It includes: a general Eagle Ford overview, a geological analysis, production trends, and completion "
         "analysis.")
 
-df = pd.read_csv("https://github.com/MoFaye/Eagleford_app/blob/48b870dd40ce1e7b2b0885229b1cea4b92709324/EF_data.csv")
-df = df.sample(frac=0.1, random_state=1)
+df = pd.read_csv("https://raw.githubusercontent.com/MoFaye/Eagleford_app/main/EF_data.csv")
+#df = df.sample(frac=0.1, random_state=1)
 df["drilling_start_date"] = pd.to_datetime(df["drilling_start_date"]).dt.date
 
 # create normalized frac fluid, proppant wieght, and cost by lateral length
