@@ -34,10 +34,10 @@ with row1_1:
         "Welcome to my Eagle Ford analysis web app developed by Streamlit and Altair. "
         "The purpose of this app is to analyze different aspects of the play represented by the below tabs. "
         "It includes: a general Eagle Ford overview, a geological analysis, production trends, and completion "
-        "analysis.")
+        "analysis. Data is downsampled to 25% to ensure app responsiveness")
 
 df = pd.read_csv("https://raw.githubusercontent.com/MoFaye/Eagleford_app/main/EF_data.csv")
-df = df.sample(frac=0.25, random_state=1)
+#df = df.sample(frac=0.1, random_state=1)
 df["drilling_start_date"] = pd.to_datetime(df["drilling_start_date"]).dt.date
 
 # create normalized frac fluid, proppant wieght, and cost by lateral length
@@ -93,6 +93,11 @@ with st.expander("**Press here to view filters**"):
     _, row_filter1, _, row_filter2, _ = st.columns((0.1, 1, 0.1, 1, 0.1))
 
     with row_filter1:
+
+        sample_size = st.slider('Choose well Sample size: ', 0.1, 1.0, 0.25)
+
+        df = df.sample(frac=sample_size, random_state=1)
+
         sub_filter = st.multiselect(
             '**Select sub-plays you are interested in:**',
             sub_plays,
@@ -920,7 +925,7 @@ pie_chart = alt.Chart(df, ).transform_joinaggregate(
 ).add_params(pie_select)
 
 pie_text = pie_chart.mark_text(radius=115,
-                               fill="darkgrey"
+                               fill="darkblue"
 ).encode(alt.Text('count():Q')
 )
 
