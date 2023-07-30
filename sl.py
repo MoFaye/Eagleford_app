@@ -9,7 +9,7 @@ from streamlit_lottie import st_lottie
 st.set_page_config(page_title="Eagle Ford Play Analysis App", layout='wide')
 
 animation = json.load(
-    open('C:/Users/moham/Desktop/Information Vizualization/exercises/Project/animation_lk9g19p3.json'))
+    open('https://github.com/MoFaye/Eagleford_app/blob/48b870dd40ce1e7b2b0885229b1cea4b92709324/animation_lk9g19p3.json'))
 st_lottie(animation, speed=1,
           height=250,
           key="initial")
@@ -35,7 +35,7 @@ with row1_1:
         "It includes: a general Eagle Ford overview, a geological analysis, production trends, and completion "
         "analysis.")
 
-df = pd.read_csv("C:/Users/moham/Desktop/Information Vizualization/exercises/Project/EF_data.csv")
+df = pd.read_csv("https://github.com/MoFaye/Eagleford_app/blob/48b870dd40ce1e7b2b0885229b1cea4b92709324/EF_data.csv")
 df = df.sample(frac=0.1, random_state=1)
 df["drilling_start_date"] = pd.to_datetime(df["drilling_start_date"]).dt.date
 
