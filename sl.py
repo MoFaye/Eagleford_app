@@ -910,7 +910,9 @@ pie_chart = alt.Chart(df, ).transform_joinaggregate(
     Total='count()',
 ).encode(
     theta=alt.Theta("count():Q").stack(True),
-    color=alt.Color("Fluid_type:N")
+    color=alt.condition(pie_select,
+                        alt.Color("Fluid_type:N"),
+                        alt.value("darkgrey"))
 ).mark_arc(outerRadius=150,
            innerRadius=75,
            padAngle=0.1,
