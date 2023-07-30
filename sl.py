@@ -37,7 +37,7 @@ with row1_1:
         "analysis.")
 
 df = pd.read_csv("https://raw.githubusercontent.com/MoFaye/Eagleford_app/main/EF_data.csv")
-df = df.sample(frac=0.1, random_state=1)
+#df = df.sample(frac=0.1, random_state=1)
 df["drilling_start_date"] = pd.to_datetime(df["drilling_start_date"]).dt.date
 
 # create normalized frac fluid, proppant wieght, and cost by lateral length
