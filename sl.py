@@ -8,8 +8,6 @@ from streamlit_lottie import st_lottie
 
 st.set_page_config(page_title="Eagle Ford Play Analysis App", layout='wide')
 
-st.markdown(hide_github_icon, unsafe_allow_html=True)
-
 animation_url ='https://raw.githubusercontent.com/MoFaye/Eagleford_app/main/animation_lk9g19p3.json'
 read_animation = requests.get(animation_url)
 animation = read_animation.json()
