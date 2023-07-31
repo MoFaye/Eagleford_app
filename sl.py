@@ -114,7 +114,7 @@ with st.expander("**Press here to view filters**"):
         df = df[df['sub_play_name'].isin(sub_filter)]
 
         fluid_type_filter = st.multiselect(
-            '**Select sub-plays you are interested in:**',
+            '**Select HC fluid type:**',
             fluid_type[0],
             fluid_type[0]
         )
